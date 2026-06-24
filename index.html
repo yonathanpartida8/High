@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- viewport-fit=cover -> usa el área completa bajo el notch en iOS -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#07070c" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta
+      name="description"
+      content="WebAR de tracking de manos con MediaPipe: gestos en tiempo real y filtros con estética Liquid Glass."
+    />
+    <title>Liquid AR · Hand Tracking</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+  </head>
+  <body>
+    <!-- Cámara: oculta visualmente, es la fuente para MediaPipe y el canvas. -->
+    <video id="camera" playsinline autoplay muted></video>
+
+    <!-- Lienzo a pantalla completa donde se compone el render AR. -->
+    <canvas id="stage"></canvas>
+
+    <!-- ===== UI flotante (Glassmorphism) ===== -->
+    <header class="hud-top glass" role="banner">
+      <div class="brand"><span class="brand-dot"></span> Liquid&nbsp;AR</div>
+      <div class="metrics">
+        <span id="fps" class="metric">-- FPS</span>
+        <span id="hands-count" class="metric muted">0&nbsp;✋</span>
+      </div>
+    </header>
+
+    <div id="toast" class="toast glass" role="status" aria-live="polite"></div>
+
+    <aside class="actions" aria-label="Acciones">
+      <button id="btn-switch" class="fab glass" type="button" title="Cambiar cámara" aria-label="Cambiar cámara">
+        <span aria-hidden="true">🔄</span>
+      </button>
+      <button id="btn-capture" class="fab glass" type="button" title="Capturar foto" aria-label="Capturar foto">
+        <span aria-hidden="true">📸</span>
+      </button>
+    </aside>
+
+    <nav class="filterbar glass" aria-label="Selección de filtros">
+      <div id="filters" class="chips"></div>
+    </nav>
+
+    <p class="hint glass" id="hint">
+      Desliza la mano ⇄ para cambiar de filtro · une ambas manos para crear un marco 🖼️
+    </p>
+
+    <!-- ===== Overlay de carga ===== -->
+    <div id="loading" class="overlay" role="status" aria-live="polite">
+      <div class="spinner" aria-hidden="true"></div>
+      <p>Iniciando cámara y visión por computadora…</p>
+    </div>
+
+    <!-- ===== Modal de permisos / error ===== -->
+    <div id="modal" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal glass">
+        <div class="modal-icon" id="modal-icon" aria-hidden="true">🎥</div>
+        <h2 id="modal-title">Necesitamos tu cámara</h2>
+        <p id="modal-text">Para vivir la experiencia AR concede el permiso de cámara.</p>
+        <ol id="modal-steps" class="steps"></ol>
+        <button id="btn-retry" class="btn-primary" type="button">Reintentar</button>
+      </div>
+    </div>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
