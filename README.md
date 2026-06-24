@@ -54,9 +54,39 @@ npm install
 npm run dev        # http://localhost:5173 (host expuesto para probar en el móvil)
 ```
 
-> La cámara requiere un **contexto seguro**. `localhost` cuenta como seguro; para
-> probar desde el móvil en la red local usa un túnel HTTPS (p. ej. `ngrok`) o el
-> propio despliegue en GitHub Pages.
+> La cámara requiere un **contexto seguro**. `localhost` y `127.0.0.1` cuentan
+> como seguros, por lo que `getUserMedia` funciona en `http://localhost` **sin
+> HTTPS**. Para probar desde otro dispositivo en la red local (IP `http://192.x`)
+> necesitarías HTTPS (túnel tipo `ngrok`) o usar el despliegue en GitHub Pages.
+
+### 📱 Ejecutar 100% en el móvil con Termux (sin PC)
+
+Como `localhost` es contexto seguro, puedes correr todo dentro del teléfono y
+abrirlo en Chrome del mismo teléfono. En un **Samsung S25 FE** (Android arm64)
+funciona así:
+
+1. Instala **Termux** (desde F-Droid, recomendado) y **Chrome**.
+2. Clona el repo y entra en la carpeta dentro de Termux:
+   ```bash
+   pkg install -y git
+   git clone <URL-de-tu-repo> high && cd high
+   ```
+3. Lanza el script de arranque (instala Node, dependencias y el servidor):
+   ```bash
+   bash termux-setup.sh
+   ```
+4. Abre **Chrome** en el mismo teléfono y navega a:
+   ```
+   http://localhost:5173
+   ```
+5. Pulsa **"Iniciar experiencia"** y **concede el permiso de cámara**.
+
+> La app espera un toque ("Iniciar experiencia") antes de pedir la cámara: es
+> requisito de los navegadores móviles para `getUserMedia`/autoplay.
+>
+> Necesitas conexión a internet: los binarios de MediaPipe (WASM) se descargan
+> de un CDN la primera vez. Mantén la pantalla de Termux activa mientras corre
+> el servidor (o usa `termux-wake-lock`).
 
 Build y previsualización:
 

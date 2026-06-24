@@ -312,6 +312,40 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* ====== Pantalla de inicio ====== */
+.start-card {
+  max-width: 380px;
+  width: 100%;
+  padding: 34px 26px;
+  border-radius: var(--radius);
+  background: var(--glass-bg-strong);
+  text-align: center;
+}
+
+.start-card h1 {
+  margin: 6px 0 10px;
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.start-card p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.fineprint {
+  margin: 14px 0 0 !important;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
 /* ====== Modal de permisos ====== */
 .modal {
   max-width: 380px;

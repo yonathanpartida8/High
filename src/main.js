@@ -24,6 +24,8 @@ const elToast = document.getElementById('toast');
 const elChips = document.getElementById('filters');
 const elHint = document.getElementById('hint');
 const elLoading = document.getElementById('loading');
+const elStart = document.getElementById('start');
+const btnStart = document.getElementById('btn-start');
 const elModal = document.getElementById('modal');
 const elModalIcon = document.getElementById('modal-icon');
 const elModalTitle = document.getElementById('modal-title');
@@ -324,6 +326,7 @@ function onResults(results) {
 /* ----------------------------- Arranque ------------------------------- */
 
 async function init() {
+  elStart.classList.add('hidden');
   elLoading.classList.remove('hidden');
   hideModal();
 
@@ -356,6 +359,10 @@ async function init() {
 }
 
 /* ------------------------------ Eventos ------------------------------- */
+
+btnStart.addEventListener('click', () => {
+  init();
+});
 
 btnRetry.addEventListener('click', () => {
   init();
@@ -400,5 +407,6 @@ document.addEventListener('visibilitychange', () => {
   }
 });
 
+// Construye la UI; la cámara se inicia con el gesto del usuario (botón "Iniciar").
+// Esto satisface las políticas de autoplay/getUserMedia de los navegadores móviles.
 buildChips();
-init();

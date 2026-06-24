@@ -53,8 +53,19 @@
       Desliza la mano ⇄ para cambiar de filtro · une ambas manos para crear un marco 🖼️
     </p>
 
+    <!-- ===== Pantalla de inicio (gesto de usuario requerido en móvil) ===== -->
+    <div id="start" class="overlay" role="dialog" aria-modal="true" aria-labelledby="start-title">
+      <div class="start-card glass">
+        <div class="modal-icon" aria-hidden="true">🖐️</div>
+        <h1 id="start-title">Liquid&nbsp;AR</h1>
+        <p>Tracking de manos en tiempo real con filtros AR sobre tu cámara.</p>
+        <button id="btn-start" class="btn-primary" type="button">Iniciar experiencia</button>
+        <p class="fineprint">Se solicitará permiso para usar la cámara. Recomendado: Chrome.</p>
+      </div>
+    </div>
+
     <!-- ===== Overlay de carga ===== -->
-    <div id="loading" class="overlay" role="status" aria-live="polite">
+    <div id="loading" class="overlay hidden" role="status" aria-live="polite">
       <div class="spinner" aria-hidden="true"></div>
       <p>Iniciando cámara y visión por computadora…</p>
     </div>
